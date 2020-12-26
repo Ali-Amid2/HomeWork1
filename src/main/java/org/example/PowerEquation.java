@@ -43,11 +43,12 @@ public class PowerEquation {
 
         // get the points from the plotter class because the list of points is restricted in the GPointsArray class
         // and put it into the arraylist.
-        // the size will be 500 points, to change it go to the FunctionPlotter class
-        for (int i=0; i<points.getNPoints(); i++){
+        // you can specify the number of points to consider here. The maximum of points will be 500. change i to get the desired number of points
+        // from 500 points. put i = i+2 to consider 12 points per second (overall 250 points) and i = i+1 to consider 25 points per second (overall 500 points)
+        for (int i=0; i<points.getNPoints(); i = i+2){
             this.pointsOfEquation.add(points.get(i));
         }
-        // delta will be 0.04 sec
+        // delta will be 0.04 sec in the sketch for 500 points. It varies for the number of points to calculate for the equation
 //        for (GPoint gPoint: pointsOfEquation){
 //            System.out.println("x= " + gPoint.getX() + " y= " + gPoint.getY());
 //        }
