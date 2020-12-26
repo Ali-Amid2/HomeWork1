@@ -36,6 +36,6 @@ public class App extends PApplet
 
     @Override
     public void mouseClicked() {
-        powerEquation.IntegralMethodTwo();
+        powerEquation.IntegralMethodThree();
     }
 }

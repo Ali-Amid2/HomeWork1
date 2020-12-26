@@ -3,8 +3,6 @@ package org.example;
 
 import grafica.GPoint;
 import grafica.GPointsArray;
-import org.mariuszgromada.math.mxparser.Argument;
-import org.mariuszgromada.math.mxparser.Expression;
 import org.mariuszgromada.math.mxparser.Function;
 import processing.core.PApplet;
 
@@ -104,14 +102,30 @@ public class PowerEquation {
         for(int i = 0; i<pointsOfEquation.size()-1;i++){
             GPoint gPoint1 = pointsOfEquation.get(i+1);
             GPoint gPoint0 = pointsOfEquation.get(i);
-            double meanY = (gPoint0.getY()+gPoint1.getY())/2;
-            area = area + (gPoint1.getX()-gPoint0.getX()) * meanY;
+            // if  two points form a triangle for area calculation
+            if (gPoint0.getY() ==0 || gPoint1.getY() == 0){
+                if (gPoint0.getY() ==0 ){
+                    area = area + 0.5*((gPoint1.getX()-gPoint0.getX())*gPoint1.getY());
+                }else {
+                    area = area + 0.5*((gPoint1.getX()-gPoint0.getX())*gPoint0.getY());
+                }
+
+                // if they form rectangle
+            }else if (gPoint0.getY() == gPoint1.getY()){
+                area = area + (gPoint1.getX()-gPoint0.getX()) * gPoint0.getY();
 
 
-            this.plotter.addLine(new GPoint(gPoint0.getX(),0),new GPoint(gPoint1.getX(),0), Color.BLUE);
-            this.plotter.addLine(new GPoint(gPoint0.getX(),(float)meanY),new GPoint(gPoint1.getX(),(float)meanY), Color.BLUE);
-            this.plotter.addLine(new GPoint(gPoint0.getX(),0),new GPoint(gPoint0.getX(),(float)meanY), Color.BLUE);
-            this.plotter.addLine(new GPoint(gPoint1.getX(),0),new GPoint(gPoint1.getX(),(float)meanY), Color.BLUE);
+
+                // if they form trapezium
+            }else {
+                area = area + 0.5*((gPoint0.getY()+gPoint1.getY())*(gPoint1.getX()-gPoint0.getX()));
+
+            }
+
+            //plot it
+
+            this.plotter.addLine(gPoint0,gPoint1,Color.BLUE);
+
 
 
         }
