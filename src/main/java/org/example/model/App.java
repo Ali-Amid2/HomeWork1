@@ -58,16 +58,16 @@ public class App extends PApplet
 
     }
 
-    public void performOne(){
-        powerEquation.IntegralMethodOne();
+    public double[] performOne(){
+        return powerEquation.IntegralMethodOne();
 
     }
-    public void performTwo(){
-        powerEquation.IntegralMethodTwo();
+    public double[] performTwo(){
+        return powerEquation.IntegralMethodTwo();
 
     }
-    public void performThree(){
-        powerEquation.IntegralMethodThree();
+    public double[] performThree(){
+        return powerEquation.IntegralMethodThree();
 
     }
 }

@@ -25,16 +25,16 @@ public class Controller {
         app.sendInformation(registrationNumber,frequency);
     }
 //
-    public void performOne() {
-        app.performOne();
+    public double[] performOne() {
+        return app.performOne();
     }
 
-    public void performTwo() {
-        app.performTwo();
+    public double[] performTwo() {
+        return app.performTwo();
 
     }
-    public void performThree() {
-        app.performThree();
+    public double[] performThree() {
+        return app.performThree();
 
     }
 //

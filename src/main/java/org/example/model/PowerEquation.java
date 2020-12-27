@@ -3,6 +3,7 @@ package org.example.model;
 
 import grafica.GPoint;
 import grafica.GPointsArray;
+import org.mariuszgromada.math.mxparser.Expression;
 import org.mariuszgromada.math.mxparser.Function;
 import processing.core.PApplet;
 
@@ -18,6 +19,8 @@ public class PowerEquation {
     FunctionPlotter1D plotter;
     private GPointsArray points;
     private List<GPoint> pointsOfEquation = new ArrayList<>();
+    private double exactResultOfIntegral;
+    private double a1;
 
 
 
@@ -30,9 +33,9 @@ public class PowerEquation {
 
     private void getFunction() {
 
-        double a1 = registrationNumber/40000;
+        this.a1 = registrationNumber/40000;
         //make power equation form the homework pdf
-        Function function = new Function(String.format("f(t) = %f*t+sin(2*pi*%f*t)",a1,this.frequency));
+        Function function = new Function(String.format("f(t) = %f*t+sin(2*pi*%f*t)",this.a1,this.frequency));
         // consider time between 0 and 20 seconds
         this.plotter = new FunctionPlotter1D(function, 0, 20);
 
@@ -51,14 +54,27 @@ public class PowerEquation {
 //            System.out.println("x= " + gPoint.getX() + " y= " + gPoint.getY());
 //        }
 
+        //calculate the exact Integral
+        ExactIntegral();
+
 
 
     }
+
+
+
+    private void ExactIntegral() {
+        Expression e2 = new Expression(String.format("int(%f*t + sin(2*pi*%f*t),t,0,20)",this.a1,this.frequency));
+        this.exactResultOfIntegral = e2.calculate();
+
+
+    }
+
     public void plot(){
         this.plotter.plot(this.pApplet);
     }
 
-    public void IntegralMethodOne() {
+    public double[] IntegralMethodOne() {
         this.plotter.clearLines();
         double area = 0;
         for(int i = 0; i<pointsOfEquation.size()-1;i++){
@@ -74,11 +90,15 @@ public class PowerEquation {
             }
 
         }
+
         System.out.println(area);
+        double [] results = {this.exactResultOfIntegral,area};
+        return results;
+
 
     }
 
-    public void IntegralMethodTwo(){
+    public double[] IntegralMethodTwo(){
         this.plotter.clearLines();
         double area = 0;
         for(int i = 0; i<pointsOfEquation.size()-1;i++){
@@ -96,10 +116,13 @@ public class PowerEquation {
 
         }
         System.out.println(area);
+        double [] results = {this.exactResultOfIntegral,area};
+        System.out.println(area);
+        return results;
 
     }
 
-    public void IntegralMethodThree(){
+    public double[] IntegralMethodThree(){
         this.plotter.clearLines();
         double area = 0;
         for(int i = 0; i<pointsOfEquation.size()-1;i++){
@@ -133,6 +156,10 @@ public class PowerEquation {
 
         }
         System.out.println(area);
+        System.out.println(area);
+        double [] results = {this.exactResultOfIntegral,area};
+        System.out.println(area);
+        return results;
 
 
     }

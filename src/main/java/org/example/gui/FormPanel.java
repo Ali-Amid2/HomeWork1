@@ -8,14 +8,14 @@ import java.awt.event.ActionListener;
 
 public class FormPanel extends JPanel {
 
-    private JLabel stepsLabel;
+    private JLabel registrationLabel;
     private JTextField registrationField;
     private JLabel frequency;
     private JTextField frequencyField;
     private JButton plotButton;
-    private JButton triggerButton;
-    private JButton roverButton;
-    private JButton combinedButton;
+    private JButton firstMethodButton;
+    private JButton secondMethodButton;
+    private JButton thirdMethodButton;
 
 
 
@@ -23,7 +23,7 @@ public class FormPanel extends JPanel {
 
 
     public FormPanel() {
-        this.stepsLabel = new JLabel("Enter your Registration Number:");
+        this.registrationLabel = new JLabel("Enter your Registration Number:");
         this.registrationField = new JTextField("122308",10);
 
         this.frequency = new JLabel("Enter your Frequency:");
@@ -33,12 +33,12 @@ public class FormPanel extends JPanel {
         setBackground(new Color(17, 167, 236));
 
         this.plotButton = new JButton("Plot the Power Equation");
-        this.triggerButton = new JButton("Perform the first Method");
-        this.roverButton = new JButton("Perform the second Method");
-        this.combinedButton = new JButton("Perform the third Method");
-        Dimension dimensionOfCombinedButton = combinedButton.getPreferredSize();
-        triggerButton.setPreferredSize(dimensionOfCombinedButton);
-        roverButton.setPreferredSize(dimensionOfCombinedButton);
+        this.firstMethodButton = new JButton("Perform the first Method");
+        this.secondMethodButton = new JButton("Perform the second Method");
+        this.thirdMethodButton = new JButton("Perform the third Method");
+        Dimension dimensionOfCombinedButton = thirdMethodButton.getPreferredSize();
+        firstMethodButton.setPreferredSize(dimensionOfCombinedButton);
+        secondMethodButton.setPreferredSize(dimensionOfCombinedButton);
         plotButton.setPreferredSize(dimensionOfCombinedButton);
         setLayout(new GridBagLayout());
         arrangeComponents();
@@ -63,31 +63,53 @@ public class FormPanel extends JPanel {
             }
         });
 
-        triggerButton.addActionListener(new ActionListener() {
+        firstMethodButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (sendInformation != null) {
-                    sendInformation.performOne();
+                   double[] results = sendInformation.performOne();
+                   //calculate errors
+                   double absoluteError = results[1] - results[0];
+                   double relativeError = Math.abs(absoluteError/results[0]) * 100 ;
+                   JOptionPane.showMessageDialog(FormPanel.this,String.format("Exact value of the Integration: %f\n" +
+                           "Numerical result of the first method: %f\n" +
+                           "Absolute Error: %f\n" +
+                           "Relative Error: %f percent ",results[0],results[1],absoluteError,relativeError),"Results of the first method", JOptionPane.INFORMATION_MESSAGE);
                 }
 
             }
         });
 
-        roverButton.addActionListener(new ActionListener() {
+        secondMethodButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (sendInformation != null) {
-                    sendInformation.performTwo();
+                   double[] results =  sendInformation.performTwo();
+                    //calculate errors
+                    double absoluteError = results[1] - results[0];
+                    double relativeError = Math.abs(absoluteError/results[0]) * 100 ;
+                    JOptionPane.showMessageDialog(FormPanel.this,String.format("Exact value of the Integration: %f\n" +
+                            "Numerical result of the second method: %f\n" +
+                            "Absolute Error: %f\n" +
+                            "Relative Error: %f percent ",results[0],results[1],absoluteError,relativeError),"Results of the second method", JOptionPane.INFORMATION_MESSAGE);
+
                 }
 
             }
         });
 
-        combinedButton.addActionListener(new ActionListener() {
+        thirdMethodButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (sendInformation != null) {
-                    sendInformation.performThree();
+                    double[] results = sendInformation.performThree();
+                    //calculate errors
+                    double absoluteError = results[1] - results[0];
+                    double relativeError = Math.abs(absoluteError/results[0]) * 100 ;
+                    JOptionPane.showMessageDialog(FormPanel.this,String.format("Exact value of the Integration: %f\n" +
+                            "Numerical result of the third method: %f\n" +
+                            "Absolute Error: %f\n" +
+                            "Relative Error: %f percent ",results[0],results[1],absoluteError,relativeError),"Results of the third method", JOptionPane.INFORMATION_MESSAGE);
                 }
 
             }
@@ -174,7 +196,7 @@ public class FormPanel extends JPanel {
 
         // padding of the component in the cell
         g.insets = new Insets(0, 0, 0, 5);
-        add(stepsLabel, g);
+        add(registrationLabel, g);
 
         // the size of cell relative to the other cells
         g.weightx = 1;
@@ -240,7 +262,7 @@ public class FormPanel extends JPanel {
 
         // padding of the component in the cell
         g.insets = new Insets(0, 0, 0, 5);
-        add(triggerButton, g);
+        add(firstMethodButton, g);
 
 
 
@@ -248,12 +270,12 @@ public class FormPanel extends JPanel {
         g.gridx = 0;
         g.gridy = 6;
         g.insets = new Insets(0, 0, 0, 0);
-        add(roverButton, g);
+        add(secondMethodButton, g);
 
         g.gridx = 0;
         g.gridy = 7;
         g.insets = new Insets(0, 0, 0, 5);
-        add(combinedButton, g);
+        add(thirdMethodButton, g);
 
 
 

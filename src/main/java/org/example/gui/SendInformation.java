@@ -4,9 +4,9 @@ import java.io.File;
 
 public interface SendInformation {
     public void sendInformation(String registrationNumber, String frequency);
-    public void performOne();
-    public void performTwo();
-    public void performThree();
+    public double[] performOne();
+    public double[] performTwo();
+    public double[] performThree();
 
 
 }

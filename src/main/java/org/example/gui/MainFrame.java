@@ -39,20 +39,20 @@ public class MainFrame extends JFrame {
           }
 
           @Override
-          public void performOne() {
-              controller.performOne();
+          public double[] performOne() {
+              return controller.performOne();
 
           }
 
           @Override
-          public void performTwo() {
-              controller.performTwo();
+          public double[] performTwo() {
+              return controller.performTwo();
 
           }
 
           @Override
-          public void performThree() {
-              controller.performThree();
+          public double[] performThree() {
+              return controller.performThree();
 
           }
       });
