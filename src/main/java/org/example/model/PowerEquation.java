@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 
 import grafica.GPoint;
@@ -59,6 +59,7 @@ public class PowerEquation {
     }
 
     public void IntegralMethodOne() {
+        this.plotter.clearLines();
         double area = 0;
         for(int i = 0; i<pointsOfEquation.size()-1;i++){
             GPoint gPoint1 = pointsOfEquation.get(i+1);
@@ -78,6 +79,7 @@ public class PowerEquation {
     }
 
     public void IntegralMethodTwo(){
+        this.plotter.clearLines();
         double area = 0;
         for(int i = 0; i<pointsOfEquation.size()-1;i++){
             GPoint gPoint1 = pointsOfEquation.get(i+1);
@@ -98,6 +100,7 @@ public class PowerEquation {
     }
 
     public void IntegralMethodThree(){
+        this.plotter.clearLines();
         double area = 0;
         for(int i = 0; i<pointsOfEquation.size()-1;i++){
             GPoint gPoint1 = pointsOfEquation.get(i+1);
@@ -133,4 +136,6 @@ public class PowerEquation {
 
 
     }
+
+
 }
