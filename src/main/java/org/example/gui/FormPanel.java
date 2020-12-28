@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 public class FormPanel extends JPanel {
 
+    private JLabel stepsLabel;
     private JLabel registrationLabel;
     private JTextField registrationField;
     private JLabel frequency;
@@ -16,6 +17,7 @@ public class FormPanel extends JPanel {
     private JButton firstMethodButton;
     private JButton secondMethodButton;
     private JButton thirdMethodButton;
+    private JLabel licence;
 
 
 
@@ -23,6 +25,10 @@ public class FormPanel extends JPanel {
 
 
     public FormPanel() {
+        this.stepsLabel = new JLabel("<html><p>Note1: 12 grid points per second has been considered for numerical calculation</p>" +
+                "                           <p>Note2: 25 grid points per second has been considered for the sketching of the function</p>" +
+                "                           <p>Note3: Press on 'Plot the Power Equation' first, then click on the desired method</p></html>" );
+
         this.registrationLabel = new JLabel("Enter your Registration Number:");
         this.registrationField = new JTextField("122308",10);
 
@@ -36,14 +42,19 @@ public class FormPanel extends JPanel {
         this.firstMethodButton = new JButton("Perform the first Method");
         this.secondMethodButton = new JButton("Perform the second Method");
         this.thirdMethodButton = new JButton("Perform the third Method");
-        Dimension dimensionOfCombinedButton = thirdMethodButton.getPreferredSize();
-        firstMethodButton.setPreferredSize(dimensionOfCombinedButton);
-        secondMethodButton.setPreferredSize(dimensionOfCombinedButton);
-        plotButton.setPreferredSize(dimensionOfCombinedButton);
+
+        this.licence = new JLabel("This program has been created by Seyedali Amid (seyedali.amid@uni-weimar.de)");
+        licence.setFont(new Font("Arial", Font.BOLD, 10));
+        licence.setBorder(BorderFactory.createEtchedBorder());
+
+        Dimension dimensionOfSeconedButton = secondMethodButton.getPreferredSize();
+        firstMethodButton.setPreferredSize(dimensionOfSeconedButton);
+        thirdMethodButton.setPreferredSize(dimensionOfSeconedButton);
+        plotButton.setPreferredSize(dimensionOfSeconedButton);
         setLayout(new GridBagLayout());
         arrangeComponents();
         Border Innerborder = BorderFactory.createEmptyBorder(0, 10, 10, 10);
-        Border Outerborder = BorderFactory.createTitledBorder("OOP HomeWork1");
+        Border Outerborder = BorderFactory.createTitledBorder("Numerical Integration Calculator");
         setBorder(BorderFactory.createCompoundBorder(Innerborder, Outerborder));
 
 
@@ -71,7 +82,7 @@ public class FormPanel extends JPanel {
                    //calculate errors
                    double absoluteError = results[1] - results[0];
                    double relativeError = Math.abs(absoluteError/results[0]) * 100 ;
-                   JOptionPane.showMessageDialog(FormPanel.this,String.format("Exact value of the Integration: %f\n" +
+                   JOptionPane.showMessageDialog(FormPanel.this,String.format("Analytical value of the Integration: %f\n" +
                            "Numerical result of the first method: %f\n" +
                            "Absolute Error: %f\n" +
                            "Relative Error: %f percent ",results[0],results[1],absoluteError,relativeError),"Results of the first method", JOptionPane.INFORMATION_MESSAGE);
@@ -86,9 +97,11 @@ public class FormPanel extends JPanel {
                 if (sendInformation != null) {
                    double[] results =  sendInformation.performTwo();
                     //calculate errors
+                    //absoluteError = approximateValue - trueValue
                     double absoluteError = results[1] - results[0];
+                    //relativeError = absoluteError/trueValue
                     double relativeError = Math.abs(absoluteError/results[0]) * 100 ;
-                    JOptionPane.showMessageDialog(FormPanel.this,String.format("Exact value of the Integration: %f\n" +
+                    JOptionPane.showMessageDialog(FormPanel.this,String.format("Analytical value of the Integration: %f\n" +
                             "Numerical result of the second method: %f\n" +
                             "Absolute Error: %f\n" +
                             "Relative Error: %f percent ",results[0],results[1],absoluteError,relativeError),"Results of the second method", JOptionPane.INFORMATION_MESSAGE);
@@ -106,7 +119,7 @@ public class FormPanel extends JPanel {
                     //calculate errors
                     double absoluteError = results[1] - results[0];
                     double relativeError = Math.abs(absoluteError/results[0]) * 100 ;
-                    JOptionPane.showMessageDialog(FormPanel.this,String.format("Exact value of the Integration: %f\n" +
+                    JOptionPane.showMessageDialog(FormPanel.this,String.format("Analytical value of the Integration: %f\n" +
                             "Numerical result of the third method: %f\n" +
                             "Absolute Error: %f\n" +
                             "Relative Error: %f percent ",results[0],results[1],absoluteError,relativeError),"Results of the third method", JOptionPane.INFORMATION_MESSAGE);
@@ -120,66 +133,7 @@ public class FormPanel extends JPanel {
         this.sendInformation = sendInformation;
     }
 
-    //        triggerButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                JFileChooser importDialog = new JFileChooser();
-//                //adding filter to the files selection:
-//                importDialog.addChoosableFileFilter(new Choosefilefilter());
-//
-//                //Show OpenDialogbox and only if the user specifies a file and click on OK, go and print the file on the terminal
-//                if (importDialog.showOpenDialog(FormPanel.this) == JFileChooser.APPROVE_OPTION) {
-//                    if ( sendFile !=null){
-//                        sendFile.sendTriggerFile(importDialog.getSelectedFile());
-//                    }
-//
-//                }
 
-//            }
-//        });
-
-//        roverButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                JFileChooser importDialog = new JFileChooser();
-//                //adding filter to the files selection:
-//                importDialog.addChoosableFileFilter(new Choosefilefilter());
-//
-//                //Show OpenDialogbox and only if the user specifies a file and click on OK, go and print the file on the terminal
-//                if (importDialog.showOpenDialog(FormPanel.this) == JFileChooser.APPROVE_OPTION) {
-//                    if ( sendFile !=null){
-//                        sendFile.sendRoverFile(importDialog.getSelectedFile());
-//                    }
-//
-//                }
-
-
-//            }
-//        });
-
-//        combinedButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                JFileChooser exportDialog = new JFileChooser();
-//                if (exportDialog.showSaveDialog(FormPanel.this) == JFileChooser.APPROVE_OPTION) {
-//                    if (sendFile != null){
-//                        if (sendFile.generateCSVFile(exportDialog.getSelectedFile())){
-//                            JOptionPane.showMessageDialog(FormPanel.this,"CSV has been created Maryam","Warning", JOptionPane.INFORMATION_MESSAGE);
-//                        }else{
-//                            JOptionPane.showMessageDialog(FormPanel.this,"Error occured", "Error",JOptionPane.ERROR_MESSAGE);
-//
-//                        }
-//                    }
-//                }
-//
-//            }
-//        });
-//    }
-
-
-//    public void setSendFile(SendFile sendFile) {
-//        this.sendFile = sendFile;
-//    }
 
     private void arrangeComponents() {
 
@@ -195,8 +149,9 @@ public class FormPanel extends JPanel {
 //        g.anchor = GridBagConstraints.LINE_START;
 
         // padding of the component in the cell
-        g.insets = new Insets(0, 0, 0, 5);
-        add(registrationLabel, g);
+        g.insets = new Insets(0, 0, 5, 5);
+        add(stepsLabel, g);
+
 
         // the size of cell relative to the other cells
         g.weightx = 1;
@@ -209,7 +164,16 @@ public class FormPanel extends JPanel {
 
         // padding of the component in the cell
         g.insets = new Insets(0, 0, 0, 5);
-        add(registrationField, g);
+        add(registrationLabel, g);
+
+
+
+
+
+
+
+
+
 
 
         // the size of cell relative to the other cells
@@ -223,7 +187,8 @@ public class FormPanel extends JPanel {
 
         // padding of the component in the cell
         g.insets = new Insets(0, 0, 0, 5);
-        add(frequency, g);
+        add(registrationField, g);
+
 
         // the size of cell relative to the other cells
         g.weightx = 1;
@@ -236,7 +201,7 @@ public class FormPanel extends JPanel {
 
         // padding of the component in the cell
         g.insets = new Insets(0, 0, 0, 5);
-        add(frequencyField, g);
+        add(frequency, g);
 
         // the size of cell relative to the other cells
         g.weightx = 1;
@@ -249,7 +214,7 @@ public class FormPanel extends JPanel {
 
         // padding of the component in the cell
         g.insets = new Insets(0, 0, 0, 5);
-        add(plotButton, g);
+        add(frequencyField, g);
 
         // the size of cell relative to the other cells
         g.weightx = 1;
@@ -262,20 +227,38 @@ public class FormPanel extends JPanel {
 
         // padding of the component in the cell
         g.insets = new Insets(0, 0, 0, 5);
+        add(plotButton, g);
+
+        // the size of cell relative to the other cells
+        g.weightx = 1;
+        g.weighty = 0.1;
+        // in which cell do have to place the component
+        g.gridx = 0;
+        g.gridy = 6;
+        // do not fill the cell completely with the component
+        g.fill = GridBagConstraints.NONE;
+
+        // padding of the component in the cell
+        g.insets = new Insets(0, 0, 0, 5);
         add(firstMethodButton, g);
 
 
 
 
         g.gridx = 0;
-        g.gridy = 6;
+        g.gridy = 7;
         g.insets = new Insets(0, 0, 0, 0);
         add(secondMethodButton, g);
 
         g.gridx = 0;
-        g.gridy = 7;
+        g.gridy = 8;
         g.insets = new Insets(0, 0, 0, 5);
         add(thirdMethodButton, g);
+
+        g.gridx = 0;
+        g.gridy = 9;
+        g.insets = new Insets(0, 0, 0, 5);
+        add(licence, g);
 
 
 

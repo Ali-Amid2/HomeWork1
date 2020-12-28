@@ -1,7 +1,8 @@
 package org.example.gui;
 
-import java.io.File;
-
+/**
+ * This interface is used for the communication between different components of the GUI
+ */
 public interface SendInformation {
     public void sendInformation(String registrationNumber, String frequency);
     public double[] performOne();

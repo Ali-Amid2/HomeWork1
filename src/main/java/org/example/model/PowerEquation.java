@@ -11,6 +11,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class calculates the integration of the PowerEquation
+ */
 public class PowerEquation {
 
     PApplet pApplet;
@@ -62,7 +65,9 @@ public class PowerEquation {
     }
 
 
-
+    /**
+     * calculate the exact value of the Integration
+     */
     private void ExactIntegral() {
         Expression e2 = new Expression(String.format("int(%f*t + sin(2*pi*%f*t),t,0,20)",this.a1,this.frequency));
         this.exactResultOfIntegral = e2.calculate();
@@ -73,10 +78,14 @@ public class PowerEquation {
     public void plot(){
         this.plotter.plot(this.pApplet);
     }
-
+    /**
+     * This method performs the first method of the numerical calculation
+     * @return exactValue and Numerical Value of the Integration
+     */
     public double[] IntegralMethodOne() {
         this.plotter.clearLines();
         double area = 0;
+        //calculate the area and sketch it
         for(int i = 0; i<pointsOfEquation.size()-1;i++){
             GPoint gPoint1 = pointsOfEquation.get(i+1);
             GPoint gPoint0 = pointsOfEquation.get(i);
@@ -97,10 +106,14 @@ public class PowerEquation {
 
 
     }
-
+    /**
+     * This method performs the second method of the numerical calculation
+     * @return exactValue and Numerical Value of the Integration
+     */
     public double[] IntegralMethodTwo(){
         this.plotter.clearLines();
         double area = 0;
+        //calculate the area and sketch it
         for(int i = 0; i<pointsOfEquation.size()-1;i++){
             GPoint gPoint1 = pointsOfEquation.get(i+1);
             GPoint gPoint0 = pointsOfEquation.get(i);
@@ -121,10 +134,14 @@ public class PowerEquation {
         return results;
 
     }
-
+    /**
+     * This method performs the third method of the numerical calculation
+     * @return exactValue and Numerical Value of the Integration
+     */
     public double[] IntegralMethodThree(){
         this.plotter.clearLines();
         double area = 0;
+        //calculate the area and sketch it
         for(int i = 0; i<pointsOfEquation.size()-1;i++){
             GPoint gPoint1 = pointsOfEquation.get(i+1);
             GPoint gPoint0 = pointsOfEquation.get(i);

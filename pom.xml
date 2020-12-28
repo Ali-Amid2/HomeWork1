@@ -5,8 +5,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>project3</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>Homework1</artifactId>
+  <version>1.0.0</version>
 
   <name>project3</name>
   <!-- FIXME change it to the project's website -->
@@ -25,12 +25,14 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <!-- be aware that the user must add the below library manually to his or her computer. The programmer has put this library on his local repo  -->
     <dependency>
       <groupId>processing</groupId>
       <artifactId>core</artifactId>
       <version>3.5.4</version>
     </dependency>
     <dependency>
+      <!-- be aware that the user must add the below library manually to his or her computer. The programmer has put this library on his local repo  -->
       <groupId>grafica</groupId>
       <artifactId>grafica</artifactId>
       <version>1.9.0</version>
@@ -44,14 +46,14 @@
   </dependencies>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
       <plugins>
-        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
-        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>

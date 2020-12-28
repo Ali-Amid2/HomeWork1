@@ -1,12 +1,10 @@
 package org.example.gui;
 
-//import org.example.controller.Controller;
-
 import org.example.controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
+
 
 public class MainFrame extends JFrame {
 
@@ -14,7 +12,10 @@ public class MainFrame extends JFrame {
     private FormPanel formPanel;
     private Controller controller;
 
-
+    /**
+     * This class is the hearth of the GUI and it sends and receives data from the Controller
+     * @param title
+     */
     public MainFrame(String title)  {
         super(title);
         formPanel = new FormPanel();
@@ -23,7 +24,7 @@ public class MainFrame extends JFrame {
         controller = new Controller();
 
 
-        setSize(400,300);
+        setSize(550,500);
         setResizable(false);
         setMaximumSize(new Dimension(350,250));
         setVisible(true);
@@ -31,6 +32,7 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
+        //communication of the GUI and Controller
       formPanel.setSendInformation(new SendInformation() {
           @Override
           public void sendInformation(String registration, String frequency) {
@@ -39,6 +41,7 @@ public class MainFrame extends JFrame {
           }
 
           @Override
+          //it performs the first method and will get the results -> the exact result and the numerical result
           public double[] performOne() {
               return controller.performOne();
 

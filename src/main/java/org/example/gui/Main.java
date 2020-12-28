@@ -8,6 +8,7 @@ public class Main
 {
     public static void main( String[] args )
     {
-        MainFrame mainFrame = new MainFrame("GPSv2");
+        //Start the Swing GUI
+        MainFrame mainFrame = new MainFrame("Homework1");
     }
 }
